@@ -1,5 +1,7 @@
 *.venv
 *.pyc
+*.pyo
+*.pyd
 *.code
 *.vscode
 # Byte-compiled / optimized / DLL files
@@ -8,31 +10,8 @@ __pycache__/
 *$py.class
 recomendation-venv/
 *.idea
-
-# Rasa specific files
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-#*.db
-*.db-shm
-*.db-wal
-*.sqlite
-*.json
-*.md
-*.pkl
-
-# Rasa model directory
-models/
-
-# Rasa logs
-logs/
-
-# Rasa training files
-core/
-
-# Rasa temporary files
-.temp/
+.ipynb_checkpoints/
+.virtual_documents/
 
 # QT
 # This file is used to ignore files which are generated
