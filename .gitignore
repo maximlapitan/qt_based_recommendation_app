@@ -15,7 +15,7 @@ recomendation-venv/
 
 # temporary do not upload pkl files, will upload later
 weights_variables/
-
+weights_variables
 
 # QT
 # This file is used to ignore files which are generated
