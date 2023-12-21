@@ -12,6 +12,7 @@ from ui_form import Ui_Widget
 from fill_labels import UIHandler, load_model, models_to_load
 import joblib
 import pickle
+from compare_models_form import CompareModels
 
 class Widget(QWidget):
     def __init__(self, parent=None):
@@ -22,6 +23,7 @@ class Widget(QWidget):
         self.ui_handler.update_label_text("weights_variables/export_dict.pkl")
         self.ui.predict_button.clicked.connect(self.predict_button)
         self.init_ui_slots()
+        self.ui.compare_performance_button.clicked.connect(self.open_second_form)
 
     def predict_button(self):
         scaler_file = "weights_variables/scaler.pkl"
@@ -51,6 +53,11 @@ class Widget(QWidget):
         self.ui.QSpinBox_prod_year.valueChanged.connect(
             update_horizontal_slider_prod_year)
 
+
+    def open_second_form(self):
+        comparison_form = CompareModels()
+        comparison_form.show()
+        print(comparison_form)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

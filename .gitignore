@@ -93,3 +93,4 @@ CMakeLists.txt.user*
 *.exe
 *.pyproject.user
 ui_form.py
+ui_CompareModels.py

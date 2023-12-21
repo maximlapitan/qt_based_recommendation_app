@@ -2,6 +2,8 @@
     "files": [
         "widget.py",
         "form.ui",
-        "fill_labels.py"
+        "fill_labels.py",
+        "compare_models_form.py",
+        "CompareModels.ui"
     ]
 }
