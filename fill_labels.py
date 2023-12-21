@@ -7,13 +7,38 @@ from PyQt6.QtWidgets import QLabel, QApplication, QWidget, QLabel, QListWidget
 from ui_form import Ui_Widget
 import pickle
 import joblib
+from copy import deepcopy
+from pandas import DataFrame as df
+
+models_to_load = {"Linear Regression": "weights_variables/lin_reg.joblib",
+                  "Decision Tree": "weights_variables/tree_reg.joblib",
+                  "Random Forest": "weights_variables/forest_reg.joblib",
+                  "Grid search": "weights_variables/grid_search.joblib", 
+                  "XGBRFRegressor": "weights_variables/XGBRFRegressor_model.joblib"}
+
+data = {'Manufacturer': [],
+              'Category': [],
+              'Leather interior': [],
+              'Fuel type': [],
+              'Engine volume': [],
+              'Gear box type': [],
+              'Drive wheels': [],
+              'Wheel': [],
+              'Turbo': [],
+              'Prod. year': [],
+              'Mileage': [],
+              'Cylinders': [],
+              'Doors': []}
 
 def load_model(file):
     model = joblib.load(type)
     return model
 
+
+
 def array_from_dict(dictionary, field):
     return sorted([str(key) for key in dictionary[field]])
+
 
 class UIHandler:
     def __init__(self, ui_widget):
@@ -22,7 +47,7 @@ class UIHandler:
     def update_label_text(self, text_file):
         with open(text_file, "rb") as pickle_transform_dict:
             transform_dict = pickle.load(pickle_transform_dict)
-            print(transform_dict)
+            # print(transform_dict)
             default_index = 0
 
             # set names in labels
@@ -38,26 +63,38 @@ class UIHandler:
             self.ui.ui.QLabel_cylinders.setText("Cylinders")
             self.ui.ui.QLabel_doors.setText("Doors")
             self.ui.ui.QLabel_model.setText("Model")
+            self.ui.ui.QLabel_prod_year.setText("Production Year")
 
             # set values in comboboxes
-            self.ui.ui.QComboBox_turbo.addItems(array_from_dict(transform_dict,"Turbo"))
-            self.ui.ui.QComboBox_gear_box_type.addItems(array_from_dict(transform_dict,"Gear box type"))
-            self.ui.ui.QComboBox_leather_interior.addItems(array_from_dict(transform_dict,"Leather interior"))
-            self.ui.ui.QComboBox_manufacturer.addItems(array_from_dict(transform_dict,"Manufacturer"))
-            self.ui.ui.QComboBox_drive_wheels.addItems(array_from_dict(transform_dict,"Drive wheels"))
-            self.ui.ui.QComboBox_engine_volume.addItems(array_from_dict(transform_dict,"Engine volume"))
-            self.ui.ui.QComboBox_category.addItems(array_from_dict(transform_dict,"Category"))
-            self.ui.ui.QComboBox_fuel_type.addItems(array_from_dict(transform_dict,"Fuel type"))
-            self.ui.ui.QComboBox_wheel.addItems(array_from_dict(transform_dict,"Wheel"))
-            self.ui.ui.QComboBox_cylinders.addItems(array_from_dict(transform_dict,"Cylinders"))
-            self.ui.ui.QComboBox_doors.addItems(array_from_dict(transform_dict,"Doors"))
-            self.ui.ui.QComboBox_model.addItems(["Linear Regression", "Decision Tree","Random Forest","Grid search","XGBRFRegressor"])
-
+            self.ui.ui.QComboBox_turbo.addItems(
+                array_from_dict(transform_dict, "Turbo"))
+            self.ui.ui.QComboBox_gear_box_type.addItems(
+                array_from_dict(transform_dict, "Gear box type"))
+            self.ui.ui.QComboBox_leather_interior.addItems(
+                array_from_dict(transform_dict, "Leather interior"))
+            self.ui.ui.QComboBox_manufacturer.addItems(
+                array_from_dict(transform_dict, "Manufacturer"))
+            self.ui.ui.QComboBox_drive_wheels.addItems(
+                array_from_dict(transform_dict, "Drive wheels"))
+            self.ui.ui.QComboBox_engine_volume.addItems(
+                array_from_dict(transform_dict, "Engine volume"))
+            self.ui.ui.QComboBox_category.addItems(
+                array_from_dict(transform_dict, "Category"))
+            self.ui.ui.QComboBox_fuel_type.addItems(
+                array_from_dict(transform_dict, "Fuel type"))
+            self.ui.ui.QComboBox_wheel.addItems(
+                array_from_dict(transform_dict, "Wheel"))
+            self.ui.ui.QComboBox_cylinders.addItems(
+                array_from_dict(transform_dict, "Cylinders"))
+            self.ui.ui.QComboBox_doors.addItems(
+                array_from_dict(transform_dict, "Doors"))
+            self.ui.ui.QComboBox_model.addItems([item for item in models_to_load.keys()])
 
             # set default value for each combobox
             self.ui.ui.QComboBox_turbo.setCurrentIndex(default_index)
             self.ui.ui.QComboBox_gear_box_type.setCurrentIndex(default_index)
-            self.ui.ui.QComboBox_leather_interior.setCurrentIndex(default_index)
+            self.ui.ui.QComboBox_leather_interior.setCurrentIndex(
+                default_index)
             self.ui.ui.QComboBox_manufacturer.setCurrentIndex(default_index)
             self.ui.ui.QComboBox_drive_wheels.setCurrentIndex(default_index)
             self.ui.ui.QComboBox_engine_volume.setCurrentIndex(default_index)
@@ -67,4 +104,43 @@ class UIHandler:
             self.ui.ui.QComboBox_cylinders.setCurrentIndex(default_index)
             self.ui.ui.QComboBox_doors.setCurrentIndex(default_index)
             self.ui.ui.QComboBox_model.setCurrentIndex(default_index)
+
+
+    def fill_data_with_data(self):
+        data[self.ui.ui.QLabel_turbo.text()] = [bool(self.ui.ui.QComboBox_turbo.currentText())]
+        data[self.ui.ui.QLabel_gear_box_type.text()] = [self.ui.ui.QComboBox_gear_box_type.currentText()]
+        data[self.ui.ui.QLabel_leather_interior.text()] = [bool(self.ui.ui.QComboBox_leather_interior.currentText())]
+        data[self.ui.ui.QLabel_manufacturer.text()] = [self.ui.ui.QComboBox_manufacturer.currentText()]
+        data[self.ui.ui.QLabel_drive_wheels.text()] = [self.ui.ui.QComboBox_drive_wheels.currentText()]
+        data[self.ui.ui.QLabel_engine_volume.text()] = [float(self.ui.ui.QComboBox_engine_volume.currentText())]
+        data[self.ui.ui.QLabel_category.text()] = [self.ui.ui.QComboBox_category.currentText()]
+        data[self.ui.ui.QLabel_fuel_type.text()] = [self.ui.ui.QComboBox_fuel_type.currentText()]
+        data[self.ui.ui.QLabel_wheel.text()] = [self.ui.ui.QComboBox_wheel.currentText()]
+        data[self.ui.ui.QLabel_cylinders.text()] = [int(self.ui.ui.QComboBox_cylinders.currentText())]
+        data[self.ui.ui.QLabel_doors.text()] = [int(self.ui.ui.QComboBox_doors.currentText())]
+        data["Prod. year"] = [self.ui.ui.QSlider_prod_year.value()]
+        data["Mileage"] = [int(self.ui.ui.QLineEdit_mileage.text())]
+        print(data)
+
+        data_encoded = deepcopy(data)
+
+        with open("weights_variables/export_dict.pkl", "rb") as d:
+            helper = pickle.load(d)
+
+            for key in data_encoded.keys():
+                if helper.get(key) is not None:
+                    car_to_translate = data_encoded[key][0]
+                    print(car_to_translate, key)
+                    # print(key, car_to_translate, helper[key][car_to_translate])
+                    if key not in ["Mileage", "Prod. year"]:
+                        data_encoded[key][0] = helper[key][car_to_translate]
+                    else:
+                        data_encoded[key][0] = car_to_translate
+
+        print(data_encoded)
+
+        return df(data_encoded)
+
+    def validate_mileage(self):
+        pass
 

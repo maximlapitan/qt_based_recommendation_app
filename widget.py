@@ -9,8 +9,9 @@ from PySide6.QtWidgets import QApplication, QWidget, QLabel
 #     pyside2-uic form.ui -o ui_form.py
 
 from ui_form import Ui_Widget
-from fill_labels import UIHandler, load_model
-
+from fill_labels import UIHandler, load_model, models_to_load
+import joblib
+import pickle
 
 class Widget(QWidget):
     def __init__(self, parent=None):
@@ -23,20 +24,32 @@ class Widget(QWidget):
         self.init_ui_slots()
 
     def predict_button(self):
-        print("clicked")
+        scaler_file = "weights_variables/scaler.pkl"
+        with open(scaler_file, "rb") as s:
+            scaler = pickle.load(s)
+            model_file = models_to_load[self.ui.QComboBox_model.currentText()]
+            with open(model_file, "rb") as m:
+                model = joblib.load(m)
+                pandas_frame_to_scale = self.ui_handler.fill_data_with_data()
+                scaled_pandas_frame = scaler.transform(pandas_frame_to_scale)
+                print(scaled_pandas_frame)
+                print(model.predict(scaled_pandas_frame))
+
 
     def init_ui_slots(self):
         def update_spin_box_prod_year():
             year = self.ui.QSlider_prod_year.value()
             self.ui.QSpinBox_prod_year.setValue(year)
 
-        self.ui.QSlider_prod_year.valueChanged.connect(update_spin_box_prod_year)
+        self.ui.QSlider_prod_year.valueChanged.connect(
+            update_spin_box_prod_year)
 
         def update_horizontal_slider_prod_year():
             year = self.ui.QSpinBox_prod_year.value()
             self.ui.QSlider_prod_year.setValue(year)
 
-        self.ui.QSpinBox_prod_year.valueChanged.connect(update_horizontal_slider_prod_year)
+        self.ui.QSpinBox_prod_year.valueChanged.connect(
+            update_horizontal_slider_prod_year)
 
 
 if __name__ == "__main__":

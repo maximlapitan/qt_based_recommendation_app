@@ -14,16 +14,16 @@ with open ("weights_variables/scaler.pkl", "rb") as s:
         
         data = {'Manufacturer': [0],
                 'Category': [0],
-                'Leather interior': [0],
+                'Leather interior': [1],
                 'Fuel type': [0],
                 'Engine volume': [0],
                 'Gear box type': [0],
                 'Drive wheels': [0],
                 'Wheel': [0],
                 'Turbo': [0],
-                'Prod. year': [2006],
+                'Prod. year': [1939],
                 'Mileage': [51258],
-                'Cylinders': [4],
+                'Cylinders': [1],
                 'Doors': [2]}
         
         new_data = pd.DataFrame(data)
