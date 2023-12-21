@@ -10,6 +10,8 @@ import joblib
 from copy import deepcopy
 from pandas import DataFrame as df
 
+exported_weights = {}
+
 models_to_load = {"Linear Regression": "weights_variables/lin_reg.joblib",
                   "Decision Tree": "weights_variables/tree_reg.joblib",
                   "Random Forest": "weights_variables/forest_reg.joblib",
@@ -121,26 +123,29 @@ class UIHandler:
         data["Prod. year"] = [self.ui.ui.QSlider_prod_year.value()]
         data["Mileage"] = [int(self.ui.ui.QLineEdit_mileage.text())]
         print(data)
+        return encode_data(data)
 
-        data_encoded = deepcopy(data)
-
-        with open("weights_variables/export_dict.pkl", "rb") as d:
-            helper = pickle.load(d)
-
-            for key in data_encoded.keys():
-                if helper.get(key) is not None:
-                    car_to_translate = data_encoded[key][0]
-                    print(car_to_translate, key)
-                    # print(key, car_to_translate, helper[key][car_to_translate])
-                    if key not in ["Mileage", "Prod. year"]:
-                        data_encoded[key][0] = helper[key][car_to_translate]
-                    else:
-                        data_encoded[key][0] = car_to_translate
-
-        print(data_encoded)
-
-        return df(data_encoded)
 
     def validate_mileage(self):
         pass
 
+def encode_data(data):
+
+    data_encoded = deepcopy(data)
+
+    with open("weights_variables/export_dict.pkl", "rb") as d:
+        helper = pickle.load(d)
+
+        for key in data_encoded.keys():
+            if helper.get(key) is not None:
+                car_to_translate = data_encoded[key][0]
+                print(car_to_translate, key)
+                # print(key, car_to_translate, helper[key][car_to_translate])
+                if key not in ["Mileage", "Prod. year"]:
+                    data_encoded[key][0] = helper[key][car_to_translate]
+                else:
+                    data_encoded[key][0] = car_to_translate
+
+    print(data_encoded)
+
+    return df(data_encoded)

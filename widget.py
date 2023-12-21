@@ -9,10 +9,12 @@ from PySide6.QtWidgets import QApplication, QWidget, QLabel
 #     pyside2-uic form.ui -o ui_form.py
 
 from ui_form import Ui_Widget
-from fill_labels import UIHandler, load_model, models_to_load
+from fill_labels import UIHandler, models_to_load
 import joblib
 import pickle
 from compare_models_form import CompareModels
+from time import sleep
+from copy import deepcopy
 
 class Widget(QWidget):
     def __init__(self, parent=None):
@@ -23,7 +25,9 @@ class Widget(QWidget):
         self.ui_handler.update_label_text("weights_variables/export_dict.pkl")
         self.ui.predict_button.clicked.connect(self.predict_button)
         self.init_ui_slots()
+        self.ui.compare_performance_button.hide()
         self.ui.compare_performance_button.clicked.connect(self.open_second_form)
+        self.comparison_form = CompareModels()
 
     def predict_button(self):
         scaler_file = "weights_variables/scaler.pkl"
@@ -36,7 +40,9 @@ class Widget(QWidget):
                 scaled_pandas_frame = scaler.transform(pandas_frame_to_scale)
                 prediction = round(abs(model.predict(scaled_pandas_frame)[0]), 2)
                 self.ui.QLabel_car_cost.setText(str(prediction))
-
+                exported_weights = deepcopy(scaled_pandas_frame)
+                self.comparison_form.receive_data(exported_weights)
+        self.ui.compare_performance_button.show()
 
     def init_ui_slots(self):
         def update_spin_box_prod_year():
@@ -55,9 +61,7 @@ class Widget(QWidget):
 
 
     def open_second_form(self):
-        comparison_form = CompareModels()
-        comparison_form.show()
-        print(comparison_form)
+        self.comparison_form.show()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
