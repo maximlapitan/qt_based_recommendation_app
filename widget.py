@@ -32,8 +32,8 @@ class Widget(QWidget):
                 model = joblib.load(m)
                 pandas_frame_to_scale = self.ui_handler.fill_data_with_data()
                 scaled_pandas_frame = scaler.transform(pandas_frame_to_scale)
-                print(scaled_pandas_frame)
-                print(model.predict(scaled_pandas_frame))
+                prediction = round(abs(model.predict(scaled_pandas_frame)[0]), 2)
+                self.ui.QLabel_car_cost.setText(str(prediction))
 
 
     def init_ui_slots(self):
