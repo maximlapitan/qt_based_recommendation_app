@@ -15,7 +15,7 @@ import pickle
 from compare_models_form import CompareModels
 from time import sleep
 from copy import deepcopy
-
+from influence_widget import InfluenceWidget
 
 class Widget(QWidget):
     def __init__(self, parent=None):
@@ -30,6 +30,8 @@ class Widget(QWidget):
         self.ui.compare_performance_button.clicked.connect(
             self.open_second_form)
         self.comparison_form = CompareModels()
+        self.influence_widget = InfluenceWidget()
+        self.ui.button_influence_of_factors.clicked.connect(self.open_drawing_form)
 
     def predict_button(self):
         scaler_file = "weights_variables/scaler.pkl"
@@ -65,6 +67,8 @@ class Widget(QWidget):
     def open_second_form(self):
         self.comparison_form.show()
 
+    def open_drawing_form(self):
+        self.influence_widget.show()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
