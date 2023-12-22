@@ -25,15 +25,26 @@ class InfluenceWidget(QWidget):
         with open("weights_variables/train_frame.pkl", "rb") as pd_frame:
             self.dataframe = pickle.load(pd_frame)
 
+        self.ui.combobox_parameter_1.currentTextChanged.connect(self.plot_figure)
+        self.ui.combobox_parameter_2.currentTextChanged.connect(self.plot_figure)
+        self.ui.radio_2d.toggled.connect(self.plot_figure)
+        self.ui.radio_3d.toggled.connect(self.plot_figure)
+
     def showEvent(self, event):
         with open("weights_variables/feature_by_importance.pkl", "rb") as features_file:
                 features = pickle.load(features_file)
-                self.ui.combobox_parameter_1.addItems([feature for _, feature in features])
-                self.ui.combobox_parameter_2.addItems([feature for _, feature in features])
-                self.ui.combobox_parameter_1.setCurrentIndex(default_index)
-                self.ui.combobox_parameter_2.setCurrentIndex(default_index)
+        self.ui.combobox_parameter_1.addItems([feature for _, feature in features])
+        self.ui.combobox_parameter_2.addItems([feature for _, feature in features])
+        self.ui.combobox_parameter_1.setCurrentIndex(default_index)
+        self.ui.combobox_parameter_2.setCurrentIndex(default_index)
 
-        figure = plot_2d_scatter(self.dataframe, self.ui.combobox_parameter_1.currentText())
+        self.plot_figure()
+
+    def plot_figure(self):
+        if self.ui.radio_2d.isChecked():
+            figure = plot_2d_scatter(self.dataframe, self.ui.combobox_parameter_1.currentText())
+        elif self.ui.radio_3d.isChecked():
+            figure = plot_3d_scatter(self.dataframe, self.ui.combobox_parameter_1.currentText(), self.ui.combobox_parameter_2.currentText())
 
         canvas = FigureCanvas(figure)
 
