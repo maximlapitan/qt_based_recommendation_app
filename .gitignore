@@ -94,3 +94,4 @@ CMakeLists.txt.user*
 *.pyproject.user
 ui_form.py
 ui_CompareModels.py
+ui_influence.py
