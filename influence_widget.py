@@ -6,7 +6,7 @@
 from ui_influence import Ui_InfluenceForm
 from PySide6.QtWidgets import QApplication, QWidget, QLabel, QTableWidgetItem, QGraphicsScene, QGraphicsProxyWidget
 from PySide6.QtWidgets import QGraphicsPixmapItem, QGraphicsView, QWidget
-from PySide6.QtGui import QImageReader, QImage, QPixmap
+from PySide6.QtGui import QImageReader, QImage, QPixmap, QIcon
 import pickle
 from fill_labels import plot_2d_scatter, plot_3d_scatter, default_index
 import pandas as pd
@@ -21,6 +21,7 @@ class InfluenceWidget(QWidget):
         super().__init__(parent)
         self.ui = Ui_InfluenceForm()
         self.ui.setupUi(self)
+        self.setWindowIcon(QIcon('doc/icon.png'))
 
         with open("weights_variables/train_frame.pkl", "rb") as pd_frame:
             self.dataframe = pickle.load(pd_frame)

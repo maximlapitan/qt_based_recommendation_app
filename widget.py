@@ -2,6 +2,7 @@
 import sys
 
 from PySide6.QtWidgets import QApplication, QWidget, QLabel
+from PySide6.QtGui import QIcon
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -32,6 +33,7 @@ class Widget(QWidget):
         self.comparison_form = CompareModels()
         self.influence_widget = InfluenceWidget()
         self.ui.button_influence_of_factors.clicked.connect(self.open_drawing_form)
+        self.setWindowIcon(QIcon('doc/icon.png'))
 
     def predict_button(self):
         scaler_file = "weights_variables/scaler.pkl"

@@ -4,7 +4,7 @@
 import sys
 
 from PySide6.QtWidgets import QApplication, QWidget, QLabel, QTableWidgetItem
-
+from PySide6.QtGui import QIcon
 from ui_CompareModels import Ui_CompareModels
 import joblib
 import pickle
@@ -19,6 +19,7 @@ class CompareModels(QWidget):
         self.ui = Ui_CompareModels()
         self.ui.setupUi(self)
         self.ui.button_close_compare_form.clicked.connect(self.close)
+        self.setWindowIcon(QIcon('doc/icon.png'))
 
     def receive_data(self,*args):
         self.data = args[0]
