@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 import seaborn as sns
 import matplotlib
-matplotlib.use('qtagg')
+
 default_index = 0
 exported_weights = {}
 

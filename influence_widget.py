@@ -14,7 +14,7 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
-
+from PySide6.QtCore import Qt
 
 class InfluenceWidget(QWidget):
     def __init__(self, parent=None):
@@ -30,6 +30,7 @@ class InfluenceWidget(QWidget):
         self.ui.combobox_parameter_2.currentTextChanged.connect(self.plot_figure)
         self.ui.radio_2d.toggled.connect(self.plot_figure)
         self.ui.radio_3d.toggled.connect(self.plot_figure)
+        self.canvas = None
 
     def showEvent(self, event):
         with open("weights_variables/feature_by_importance.pkl", "rb") as features_file:
@@ -41,15 +42,15 @@ class InfluenceWidget(QWidget):
 
         self.plot_figure()
 
-    def plot_figure(self):
-        if self.ui.radio_2d.isChecked():
-            figure = plot_2d_scatter(self.dataframe, self.ui.combobox_parameter_1.currentText())
-        elif self.ui.radio_3d.isChecked():
-            figure = plot_3d_scatter(self.dataframe, self.ui.combobox_parameter_1.currentText(), self.ui.combobox_parameter_2.currentText())
+    def resizeEvent(self, event):
+        if self.canvas == None:
+            pass
+        else:
+            self.display_bitmap(self.canvas)
+        # self.plot_figure()
+        self.ui.graphicsView_matplotlib.fitInView(self.ui.graphicsView_matplotlib.sceneRect(), aspectRadioMode=Qt.KeepAspectRatio)
 
-        canvas = FigureCanvas(figure)
-
-        canvas.draw()
+    def display_bitmap(self, canvas):
         buffer = canvas.buffer_rgba()
         qimage = QImage(buffer, canvas.get_width_height()[0], canvas.get_width_height()[1], QImage.Format_ARGB32)
 
@@ -62,4 +63,16 @@ class InfluenceWidget(QWidget):
         scene.addItem(pixmap_item)
 
         self.ui.graphicsView_matplotlib.setScene(scene)
+
+    def plot_figure(self):
+        if self.ui.radio_2d.isChecked():
+            figure = plot_2d_scatter(self.dataframe, self.ui.combobox_parameter_1.currentText())
+        elif self.ui.radio_3d.isChecked():
+            figure = plot_3d_scatter(self.dataframe, self.ui.combobox_parameter_1.currentText(), self.ui.combobox_parameter_2.currentText())
+
+        self.canvas = FigureCanvas(figure)
+        print(figure)
+        self.canvas.draw()
+
+        self.display_bitmap(self.canvas)
 
