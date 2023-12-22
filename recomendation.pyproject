@@ -4,6 +4,7 @@
         "form.ui",
         "fill_labels.py",
         "compare_models_form.py",
-        "CompareModels.ui"
+        "CompareModels.ui",
+        "influence.ui"
     ]
 }

@@ -17,6 +17,7 @@ class CompareModels(QWidget):
         super().__init__(parent)
         self.ui = Ui_CompareModels()
         self.ui.setupUi(self)
+        self.ui.button_close_compare_form.clicked.connect(self.close)
 
     def receive_data(self,*args):
         self.data = args[0]
@@ -34,4 +35,17 @@ class CompareModels(QWidget):
             prediction = str(self.open_predict_close(model_name, self.data))
             self.ui.QTable_comparison_models.setItem(i, 0, QTableWidgetItem(model_name))
             self.ui.QTable_comparison_models.setItem(i, 1, QTableWidgetItem(prediction))
+            self.ui.QTable_comparison_models.resizeColumnsToContents()
+            self.ui.QTable_comparison_models.resizeRowsToContents()
 
+    def setTableWidth(self):
+            width = self.ui.QTable_comparison_models.verticalHeader().width()
+            width += self.ui.QTable_comparison_models.horizontalHeader().length()
+            if self.ui.QTable_comparison_models.verticalScrollBar().isVisible():
+                width += self.ui.QTable_comparison_models.verticalScrollBar().width()
+            width += self.ui.QTable_comparison_models.frameWidth() * 2
+            self.ui.QTable_comparison_models.setFixedWidth(width)
+
+    def resizeEvent(self, event):
+            self.setTableWidth()
+            super(CompareModels, self).resizeEvent(event)

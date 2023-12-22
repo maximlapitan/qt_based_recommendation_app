@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>871</width>
-    <height>708</height>
+    <width>558</width>
+    <height>491</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,303 +16,309 @@
   <property name="windowIcon">
    <iconset theme="applications-utilities"/>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>461</width>
-     <height>591</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_9">
-      <item>
-       <widget class="QLabel" name="QLabel_turbo">
-        <property name="text">
-         <string>Turbo</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="QComboBox_turbo"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_6">
-      <item>
-       <widget class="QLabel" name="QLabel_gear_box_type">
-        <property name="text">
-         <string>Gear box type</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="QComboBox_gear_box_type"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QLabel" name="QLabel_leather_interior">
-        <property name="text">
-         <string>Leather interior</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="QComboBox_leather_interior"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLabel" name="QLabel_manufacturer">
-        <property name="text">
-         <string>Manufacturer</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="QComboBox_manufacturer"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_7">
-      <item>
-       <widget class="QLabel" name="QLabel_drive_wheels">
-        <property name="text">
-         <string>Drive wheels</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="QComboBox_drive_wheels"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_5">
-      <item>
-       <widget class="QLabel" name="QLabel_engine_volume">
-        <property name="text">
-         <string>Engine volume</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="QComboBox_engine_volume"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QLabel" name="QLabel_category">
-        <property name="text">
-         <string>Category</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="QComboBox_category"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <widget class="QLabel" name="QLabel_fuel_type">
-        <property name="text">
-         <string>Fuel type</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="QComboBox_fuel_type"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_8">
-      <item>
-       <widget class="QLabel" name="QLabel_wheel">
-        <property name="text">
-         <string>Wheel</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="QComboBox_wheel"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_11">
-      <item>
-       <widget class="QLabel" name="QLabel_doors">
-        <property name="text">
-         <string>Doors</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="QComboBox_doors"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_10">
-      <item>
-       <widget class="QLabel" name="QLabel_cylinders">
-        <property name="text">
-         <string>Cylinders</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="QComboBox_cylinders"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_13">
-      <item>
-       <widget class="QLabel" name="QLabel_prod_year">
-        <property name="text">
-         <string>Production Year</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSlider" name="QSlider_prod_year">
-        <property name="minimum">
-         <number>1939</number>
-        </property>
-        <property name="maximum">
-         <number>2020</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="QSpinBox_prod_year">
-        <property name="minimum">
-         <number>1939</number>
-        </property>
-        <property name="maximum">
-         <number>2020</number>
-        </property>
-        <property name="stepType">
-         <enum>QAbstractSpinBox::DefaultStepType</enum>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_12">
-      <item>
-       <widget class="QLabel" name="QLabel_model">
-        <property name="text">
-         <string>Model</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="QComboBox_model"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_14">
-      <item>
-       <widget class="QLabel" name="QLabel_model_2">
-        <property name="text">
-         <string>Mileage (km, no more than)</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="QLineEdit_mileage">
-        <property name="inputMask">
-         <string>90000000</string>
-        </property>
-        <property name="text">
-         <string>0</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>560</x>
-     <y>80</y>
-     <width>271</width>
-     <height>161</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <widget class="QPushButton" name="predict_button">
-      <property name="text">
-       <string>Predict Price</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="QLabel_car_cost_announce">
-      <property name="text">
-       <string>Your car will cost (in USD):</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="QLabel_car_cost">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <spacer name="verticalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item>
-     <widget class="QPushButton" name="compare_performance_button">
-      <property name="text">
-       <string>Compare performance of all models</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <widget class="QLabel" name="QLabel_turbo">
+         <property name="text">
+          <string>Turbo</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="QComboBox_turbo"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QLabel" name="QLabel_gear_box_type">
+         <property name="text">
+          <string>Gear box type</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="QComboBox_gear_box_type"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="QLabel_leather_interior">
+         <property name="text">
+          <string>Leather interior</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="QComboBox_leather_interior"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="QLabel_manufacturer">
+         <property name="text">
+          <string>Manufacturer</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="QComboBox_manufacturer"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QLabel" name="QLabel_drive_wheels">
+         <property name="text">
+          <string>Drive wheels</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="QComboBox_drive_wheels"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QLabel" name="QLabel_engine_volume">
+         <property name="text">
+          <string>Engine volume</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="QComboBox_engine_volume"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="QLabel_category">
+         <property name="text">
+          <string>Category</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="QComboBox_category"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QLabel" name="QLabel_fuel_type">
+         <property name="text">
+          <string>Fuel type</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="QComboBox_fuel_type"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <item>
+        <widget class="QLabel" name="QLabel_wheel">
+         <property name="text">
+          <string>Wheel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="QComboBox_wheel"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_11">
+       <item>
+        <widget class="QLabel" name="QLabel_doors">
+         <property name="text">
+          <string>Doors</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="QComboBox_doors"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QLabel" name="QLabel_cylinders">
+         <property name="text">
+          <string>Cylinders</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="QComboBox_cylinders"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_13">
+       <item>
+        <widget class="QLabel" name="QLabel_prod_year">
+         <property name="text">
+          <string>Production Year</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="QSlider_prod_year">
+         <property name="minimum">
+          <number>1939</number>
+         </property>
+         <property name="maximum">
+          <number>2020</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="QSpinBox_prod_year">
+         <property name="minimum">
+          <number>1939</number>
+         </property>
+         <property name="maximum">
+          <number>2020</number>
+         </property>
+         <property name="stepType">
+          <enum>QAbstractSpinBox::DefaultStepType</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_12">
+       <item>
+        <widget class="QLabel" name="QLabel_model">
+         <property name="text">
+          <string>Model</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="QComboBox_model"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_14">
+       <item>
+        <widget class="QLabel" name="QLabel_model_2">
+         <property name="text">
+          <string>Mileage (km, no more than)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="QLineEdit_mileage">
+         <property name="inputMask">
+          <string>90000000</string>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="1">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="predict_button">
+       <property name="text">
+        <string>Predict Price</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="QLabel_car_cost_announce">
+       <property name="text">
+        <string>Your car will cost (in USD):</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="QLabel_car_cost">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="compare_performance_button">
+       <property name="text">
+        <string>Compare performance of all models</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_influence_of_factors">
+       <property name="text">
+        <string>See how factors influence price</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
