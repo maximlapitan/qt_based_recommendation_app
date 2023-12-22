@@ -10,6 +10,7 @@ import joblib
 import pickle
 
 from fill_labels import models_to_load, encode_data
+from matplotlib.figure import Figure
 
 
 class CompareModels(QWidget):

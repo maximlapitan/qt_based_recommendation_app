@@ -11,8 +11,11 @@ from copy import deepcopy
 from pandas import DataFrame as df
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
 import seaborn as sns
-
+import matplotlib
+matplotlib.use('qtagg')
+default_index = 0
 exported_weights = {}
 
 models_to_load = {"Linear Regression": "weights_variables/lin_reg.joblib",
@@ -53,7 +56,6 @@ class UIHandler:
         with open(text_file, "rb") as pickle_transform_dict:
             transform_dict = pickle.load(pickle_transform_dict)
             # print(transform_dict)
-            default_index = 0
 
             # set names in labels
             self.ui.ui.QLabel_turbo.setText("Turbo")
@@ -169,36 +171,35 @@ def plot_2d_scatter(df, variable):
     # Check if the variable is present in the DataFrame
     if variable not in df.columns:
         print(f"Variable {variable} not found in DataFrame.")
-        return
+        return None
 
     # Create a 2D scatter plot
-    plt.figure(figsize=(8, 6))
+    fig = Figure()
+    ax = fig.add_subplot(111)
 
-    plt.scatter(df[variable], df['Price'], c=df['Price'], cmap='viridis')
-    plt.xlabel(variable)
-    plt.ylabel('Price')
-    plt.title(f'2D Scatter Plot: {variable} vs Price')
-    plt.colorbar(label='Price')
+    scatter = ax.scatter(df[variable], df['Price'], c=df['Price'], cmap='viridis')
+    ax.set_xlabel(variable)
+    ax.set_ylabel('Price')
+    ax.set_title(f'2D Scatter Plot: {variable} vs Price')
+    fig.colorbar(scatter, label='Price')
 
-    return plt
+    return fig
 
 
 def plot_3d_scatter(df, x_variable, y_variable):
     # Check if the variables are present in the DataFrame
     if x_variable not in df.columns or y_variable not in df.columns:
-        print(
-            f"One or both of the variables {x_variable}, {y_variable} not found in DataFrame.")
+        print(f"One or both of the variables {x_variable}, {y_variable} not found in DataFrame.")
         return
 
     # Create a 3D scatter plot
-    fig = plt.figure(figsize=(8, 6))
+    fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
 
-    ax.scatter(df[x_variable], df[y_variable],
-               df['Price'], c=df['Price'], cmap='viridis')
+    ax.scatter(df[x_variable], df[y_variable], df['Price'], c=df['Price'], cmap='viridis')
     ax.set_xlabel(x_variable)
     ax.set_ylabel(y_variable)
     ax.set_zlabel('Price')
     ax.set_title(f'3D Scatter Plot: {x_variable}, {y_variable}, Price')
 
-    return plt
+    return fig
