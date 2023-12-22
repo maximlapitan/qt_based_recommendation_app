@@ -9,33 +9,36 @@ import pickle
 import joblib
 from copy import deepcopy
 from pandas import DataFrame as df
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 exported_weights = {}
 
 models_to_load = {"Linear Regression": "weights_variables/lin_reg.joblib",
                   "Decision Tree": "weights_variables/tree_reg.joblib",
                   "Random Forest": "weights_variables/forest_reg.joblib",
-                  "Grid search": "weights_variables/grid_search.joblib", 
+                  "Grid search": "weights_variables/grid_search.joblib",
                   "XGBRFRegressor": "weights_variables/XGBRFRegressor_model.joblib"}
 
 data = {'Manufacturer': [],
-              'Category': [],
-              'Leather interior': [],
-              'Fuel type': [],
-              'Engine volume': [],
-              'Gear box type': [],
-              'Drive wheels': [],
-              'Wheel': [],
-              'Turbo': [],
-              'Prod. year': [],
-              'Mileage': [],
-              'Cylinders': [],
-              'Doors': []}
+        'Category': [],
+        'Leather interior': [],
+        'Fuel type': [],
+        'Engine volume': [],
+        'Gear box type': [],
+        'Drive wheels': [],
+        'Wheel': [],
+        'Turbo': [],
+        'Prod. year': [],
+        'Mileage': [],
+        'Cylinders': [],
+        'Doors': []}
+
 
 def load_model(file):
     model = joblib.load(type)
     return model
-
 
 
 def array_from_dict(dictionary, field):
@@ -90,7 +93,8 @@ class UIHandler:
                 array_from_dict(transform_dict, "Cylinders"))
             self.ui.ui.QComboBox_doors.addItems(
                 array_from_dict(transform_dict, "Doors"))
-            self.ui.ui.QComboBox_model.addItems([item for item in models_to_load.keys()])
+            self.ui.ui.QComboBox_model.addItems(
+                [item for item in models_to_load.keys()])
 
             # set default value for each combobox
             self.ui.ui.QComboBox_turbo.setCurrentIndex(default_index)
@@ -107,27 +111,37 @@ class UIHandler:
             self.ui.ui.QComboBox_doors.setCurrentIndex(default_index)
             self.ui.ui.QComboBox_model.setCurrentIndex(default_index)
 
-
     def fill_data_with_data(self):
-        data[self.ui.ui.QLabel_turbo.text()] = [bool(self.ui.ui.QComboBox_turbo.currentText())]
-        data[self.ui.ui.QLabel_gear_box_type.text()] = [self.ui.ui.QComboBox_gear_box_type.currentText()]
-        data[self.ui.ui.QLabel_leather_interior.text()] = [bool(self.ui.ui.QComboBox_leather_interior.currentText())]
-        data[self.ui.ui.QLabel_manufacturer.text()] = [self.ui.ui.QComboBox_manufacturer.currentText()]
-        data[self.ui.ui.QLabel_drive_wheels.text()] = [self.ui.ui.QComboBox_drive_wheels.currentText()]
-        data[self.ui.ui.QLabel_engine_volume.text()] = [float(self.ui.ui.QComboBox_engine_volume.currentText())]
-        data[self.ui.ui.QLabel_category.text()] = [self.ui.ui.QComboBox_category.currentText()]
-        data[self.ui.ui.QLabel_fuel_type.text()] = [self.ui.ui.QComboBox_fuel_type.currentText()]
-        data[self.ui.ui.QLabel_wheel.text()] = [self.ui.ui.QComboBox_wheel.currentText()]
-        data[self.ui.ui.QLabel_cylinders.text()] = [int(self.ui.ui.QComboBox_cylinders.currentText())]
-        data[self.ui.ui.QLabel_doors.text()] = [int(self.ui.ui.QComboBox_doors.currentText())]
+        data[self.ui.ui.QLabel_turbo.text()] = [bool(
+            self.ui.ui.QComboBox_turbo.currentText())]
+        data[self.ui.ui.QLabel_gear_box_type.text()] = [
+            self.ui.ui.QComboBox_gear_box_type.currentText()]
+        data[self.ui.ui.QLabel_leather_interior.text()] = [bool(
+            self.ui.ui.QComboBox_leather_interior.currentText())]
+        data[self.ui.ui.QLabel_manufacturer.text()] = [
+            self.ui.ui.QComboBox_manufacturer.currentText()]
+        data[self.ui.ui.QLabel_drive_wheels.text()] = [
+            self.ui.ui.QComboBox_drive_wheels.currentText()]
+        data[self.ui.ui.QLabel_engine_volume.text()] = [float(
+            self.ui.ui.QComboBox_engine_volume.currentText())]
+        data[self.ui.ui.QLabel_category.text()] = [
+            self.ui.ui.QComboBox_category.currentText()]
+        data[self.ui.ui.QLabel_fuel_type.text()] = [
+            self.ui.ui.QComboBox_fuel_type.currentText()]
+        data[self.ui.ui.QLabel_wheel.text()] = [
+            self.ui.ui.QComboBox_wheel.currentText()]
+        data[self.ui.ui.QLabel_cylinders.text()] = [int(
+            self.ui.ui.QComboBox_cylinders.currentText())]
+        data[self.ui.ui.QLabel_doors.text()] = [int(
+            self.ui.ui.QComboBox_doors.currentText())]
         data["Prod. year"] = [self.ui.ui.QSlider_prod_year.value()]
         data["Mileage"] = [int(self.ui.ui.QLineEdit_mileage.text())]
         print(data)
         return encode_data(data)
 
-
     def validate_mileage(self):
         pass
+
 
 def encode_data(data):
 
@@ -149,3 +163,42 @@ def encode_data(data):
     print(data_encoded)
 
     return df(data_encoded)
+
+
+def plot_2d_scatter(df, variable):
+    # Check if the variable is present in the DataFrame
+    if variable not in df.columns:
+        print(f"Variable {variable} not found in DataFrame.")
+        return
+
+    # Create a 2D scatter plot
+    plt.figure(figsize=(8, 6))
+
+    plt.scatter(df[variable], df['Price'], c=df['Price'], cmap='viridis')
+    plt.xlabel(variable)
+    plt.ylabel('Price')
+    plt.title(f'2D Scatter Plot: {variable} vs Price')
+    plt.colorbar(label='Price')
+
+    return plt
+
+
+def plot_3d_scatter(df, x_variable, y_variable):
+    # Check if the variables are present in the DataFrame
+    if x_variable not in df.columns or y_variable not in df.columns:
+        print(
+            f"One or both of the variables {x_variable}, {y_variable} not found in DataFrame.")
+        return
+
+    # Create a 3D scatter plot
+    fig = plt.figure(figsize=(8, 6))
+    ax = fig.add_subplot(111, projection='3d')
+
+    ax.scatter(df[x_variable], df[y_variable],
+               df['Price'], c=df['Price'], cmap='viridis')
+    ax.set_xlabel(x_variable)
+    ax.set_ylabel(y_variable)
+    ax.set_zlabel('Price')
+    ax.set_title(f'3D Scatter Plot: {x_variable}, {y_variable}, Price')
+
+    return plt

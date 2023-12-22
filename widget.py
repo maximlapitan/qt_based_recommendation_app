@@ -16,6 +16,7 @@ from compare_models_form import CompareModels
 from time import sleep
 from copy import deepcopy
 
+
 class Widget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -26,7 +27,8 @@ class Widget(QWidget):
         self.ui.predict_button.clicked.connect(self.predict_button)
         self.init_ui_slots()
         self.ui.compare_performance_button.hide()
-        self.ui.compare_performance_button.clicked.connect(self.open_second_form)
+        self.ui.compare_performance_button.clicked.connect(
+            self.open_second_form)
         self.comparison_form = CompareModels()
 
     def predict_button(self):
@@ -38,7 +40,8 @@ class Widget(QWidget):
                 model = joblib.load(m)
                 pandas_frame_to_scale = self.ui_handler.fill_data_with_data()
                 scaled_pandas_frame = scaler.transform(pandas_frame_to_scale)
-                prediction = round(abs(model.predict(scaled_pandas_frame)[0]), 2)
+                prediction = round(
+                    abs(model.predict(scaled_pandas_frame)[0]), 2)
                 self.ui.QLabel_car_cost.setText(str(prediction))
                 exported_weights = deepcopy(scaled_pandas_frame)
                 self.comparison_form.receive_data(exported_weights)
@@ -59,9 +62,9 @@ class Widget(QWidget):
         self.ui.QSpinBox_prod_year.valueChanged.connect(
             update_horizontal_slider_prod_year)
 
-
     def open_second_form(self):
         self.comparison_form.show()
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
