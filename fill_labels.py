@@ -177,7 +177,8 @@ def plot_2d_scatter(df, variable):
     fig = Figure()
     ax = fig.add_subplot(111)
 
-    scatter = ax.scatter(df[variable], df['Price'], c=df['Price'], cmap='viridis')
+    scatter = ax.scatter(df[variable], df['Price'],
+                         c=df['Price'], cmap='viridis')
     ax.set_xlabel(variable)
     ax.set_ylabel('Price')
     ax.set_title(f'2D Scatter Plot: {variable} vs Price')
@@ -189,14 +190,16 @@ def plot_2d_scatter(df, variable):
 def plot_3d_scatter(df, x_variable, y_variable):
     # Check if the variables are present in the DataFrame
     if x_variable not in df.columns or y_variable not in df.columns:
-        print(f"One or both of the variables {x_variable}, {y_variable} not found in DataFrame.")
+        print(
+            f"One or both of the variables {x_variable}, {y_variable} not found in DataFrame.")
         return
 
     # Create a 3D scatter plot
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
 
-    ax.scatter(df[x_variable], df[y_variable], df['Price'], c=df['Price'], cmap='viridis')
+    ax.scatter(df[x_variable], df[y_variable],
+               df['Price'], c=df['Price'], cmap='viridis')
     ax.set_xlabel(x_variable)
     ax.set_ylabel(y_variable)
     ax.set_zlabel('Price')

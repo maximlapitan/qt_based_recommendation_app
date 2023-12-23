@@ -18,6 +18,7 @@ from time import sleep
 from copy import deepcopy
 from influence_widget import InfluenceWidget
 
+
 class Widget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -32,7 +33,8 @@ class Widget(QWidget):
             self.open_second_form)
         self.comparison_form = CompareModels()
         self.influence_widget = InfluenceWidget()
-        self.ui.button_influence_of_factors.clicked.connect(self.open_drawing_form)
+        self.ui.button_influence_of_factors.clicked.connect(
+            self.open_drawing_form)
         self.setWindowIcon(QIcon('doc/icon.png'))
 
     def predict_button(self):
@@ -71,6 +73,7 @@ class Widget(QWidget):
 
     def open_drawing_form(self):
         self.influence_widget.show()
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

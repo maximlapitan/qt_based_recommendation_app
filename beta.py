@@ -4,14 +4,14 @@ import numpy as np
 import pandas as pd
 
 
-with open ("weights_variables/scaler.pkl", "rb") as s:
+with open("weights_variables/scaler.pkl", "rb") as s:
     scaler = pickle.load(s)
-    
+
     with open("weights_variables/lin_reg.joblib", "rb") as m:
         model = joblib.load(m)
-        
+
         data = np.array([[0, 0, 0, 0, 0, 0, 0, 0, 0, 2006, 51258, 4, 2]])
-        
+
         data = {'Manufacturer': [0],
                 'Category': [0],
                 'Leather interior': [1],
@@ -25,13 +25,11 @@ with open ("weights_variables/scaler.pkl", "rb") as s:
                 'Mileage': [51258],
                 'Cylinders': [1],
                 'Doors': [2]}
-        
-        new_data = pd.DataFrame(data)
-        
-        scaled_data = scaler.transform(new_data)
-        
-        print(scaler.get_feature_names_out())
-        
-        print(model.predict(scaled_data))
 
-        
+        new_data = pd.DataFrame(data)
+
+        scaled_data = scaler.transform(new_data)
+
+        print(scaler.get_feature_names_out())
+
+        print(model.predict(scaled_data))

@@ -6,6 +6,8 @@
         "compare_models_form.py",
         "CompareModels.ui",
         "influence.ui",
-        "influence_widget.py"
+        "influence_widget.py",
+        "main.py",
+        "download_and_init.py"
     ]
 }
