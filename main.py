@@ -1,7 +1,11 @@
 # This Python file uses the following encoding: utf-8
 
-# if __name__ == "__main__":
-#     pass
+"""IMPORTANT: run these 3 commands before you continue
+pyside6-uic form.ui -o ui_form.py
+pyside6-uic CompareModels.ui -o ui_CompareModels.py
+pyside6-uic influence.ui -o ui_influence.py
+"""
+
 
 import sys
 from PySide6.QtWidgets import QApplication
