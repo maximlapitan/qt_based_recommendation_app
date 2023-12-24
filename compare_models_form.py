@@ -1,16 +1,13 @@
 # This Python file uses the following encoding: utf-8
 
 # This Python file uses the following encoding: utf-8
-import sys
 
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QTableWidgetItem
+from PySide6.QtWidgets import QWidget, QTableWidgetItem
 from PySide6.QtGui import QIcon
 from ui_CompareModels import Ui_CompareModels
 import joblib
-import pickle
 
-from fill_labels import models_to_load, encode_data
-from matplotlib.figure import Figure
+from fill_labels import models_to_load
 
 
 class CompareModels(QWidget):

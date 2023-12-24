@@ -4,16 +4,11 @@
 #     pass
 
 from ui_influence import Ui_InfluenceForm
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QTableWidgetItem, QGraphicsScene, QGraphicsProxyWidget
-from PySide6.QtWidgets import QGraphicsPixmapItem, QGraphicsView, QWidget
-from PySide6.QtGui import QImageReader, QImage, QPixmap, QIcon
+from PySide6.QtWidgets import QGraphicsScene, QGraphicsPixmapItem, QWidget
+from PySide6.QtGui import QImage, QPixmap, QIcon
 import pickle
 from fill_labels import plot_2d_scatter, plot_3d_scatter, default_index
-import pandas as pd
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
-
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.figure import Figure
 from PySide6.QtCore import Qt
 
 class InfluenceWidget(QWidget):

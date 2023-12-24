@@ -2,18 +2,12 @@
 
 # if __name__ == "__main__":
 #     pass
-
-from PyQt6.QtWidgets import QLabel, QApplication, QWidget, QLabel, QListWidget
-from ui_form import Ui_Widget
 import pickle
 import joblib
 from copy import deepcopy
 from pandas import DataFrame as df
-from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
-import seaborn as sns
-import matplotlib
 
 default_index = 0
 exported_weights = {}
