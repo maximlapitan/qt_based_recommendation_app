@@ -1,7 +1,7 @@
 # This Python file uses the following encoding: utf-8
 import sys
 
-from PySide6.QtWidgets import QApplication, QWidget, QLabel
+from PySide6.QtWidgets import QApplication, QWidget
 from PySide6.QtGui import QIcon
 
 from ui_form import Ui_Widget
@@ -9,7 +9,6 @@ from fill_labels import UIHandler, models_to_load
 import joblib
 import pickle
 from compare_models_form import CompareModels
-from time import sleep
 from copy import deepcopy
 from influence_widget import InfluenceWidget
 
