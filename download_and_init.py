@@ -5,12 +5,14 @@ import requests
 import zipfile
 from tqdm import tqdm
 
+ignored_list = [".idea/", ".gitkeep"]
 
 def check_and_download_folder_contents(folder_path, download_url):
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
-
-    if not os.listdir(folder_path):
+    existing_files = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+    
+    if not existing_files or all(file in ignored_list for file in existing_files):
         download_folder_contents(folder_path, download_url)
     else:
         print("Folder already has contents.")
@@ -65,5 +67,5 @@ def extract_folder_contents(folder_path, archive_path):
 
 # Example usage:
 folder_path = 'weights_variables'
-download_url = 'https://nextcloud.th-deg.de/s/AxST3iar5JDjyrf/download'
+download_url = 'https://nextcloud.th-deg.de/s/i7FDQWxpyoGqXsX/download'
 check_and_download_folder_contents(folder_path, download_url)
