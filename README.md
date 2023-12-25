@@ -1,5 +1,7 @@
 # QT car price prediction model
 
+Be aware, that due to windows-related dll issues project may have troubles launching under windows machines. If you experience them, I recommend you to try project in VM (opensuse or ubuntu). Be sure to have [python-3.11.6](https://www.python.org/downloads/release/python-3116/)
+
 ## Authors
 
 Maxim Lapitan 22200839
