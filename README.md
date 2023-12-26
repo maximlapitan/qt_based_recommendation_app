@@ -18,7 +18,21 @@ Project uses openly distributed dataset from [Kaggle](https://www.kaggle.com/dat
 
 The dataset itself was modified and normalized, thus we use [our version](car_price_prediction.csv), which is added directly to repository.
 
-Keep in mind, that project is writte using `*.ui` files in QT Designer.
+Keep in mind, that project is writte using `*.ui` files in QT Designer. And is divided to 3 separate windows:
+
+<p align="center">
+  <figure>
+    <img src="doc/form_ui.png" width="100" alt="doc/form_ui.png">
+    <figcaption>Main <code>form.ui</code></figcaption>
+  </figure><figure>
+    <img src="doc/CompareModels_ui.png" width="100" alt="doc/CompareModels_ui.png">
+    <figcaption>Model comparison <code> CompareModels.ui</code> </figcaption>
+  </figure><figure>
+    <img src="doc/influence_ui.png" width="100" alt="doc/influence_ui.png">
+    <figcaption>Influence of factor at price <code>influence.ui</code> </figcaption>
+  </figure>
+</p>
+
 
 ## Installation
 
@@ -36,8 +50,8 @@ Software version used:
 | seaborn      | 0.13.0  |
 | xgboost      | 2.0.2   |
 
+### Install all dependencies and activate venv
 
-1. Install all dependencies and activate venv
    ```bash
    git clone https://mygit.th-deg.de/mz20849/mm-recommendation.git
    cd mm-recommendation/
@@ -46,24 +60,33 @@ Software version used:
    pip install -r requirements.txt
    ```
 
-1. Get weights. There are 2 options:
-   1. You can either train them yourself by running provided jupyter notebook `inspect_csv.ipynb`. This will also help you to understand project better
-   2. Or you can download them by running `download_and_init.py` script, which will download pretrained weights from nextcloud
-2. Run project. There are 2 options:
-   1. Via [QT Creator](https://www.qt.io/download). Open `recomendation.pyproject` as project in QT Creator and press either `Ctrl+R` or build symbol to build and run project. Please be sure to select `recomendation-venv` python binary as executable in Projects-Run in QT creator
-   2. Using using terminal and `pyside` commands. Activate previously created venv (if not done before) and type 
-   ```bash
-   pyside6-uic form.ui -o ui_form.py
-   pyside6-uic CompareModels.ui -o ui_CompareModels.py
-   pyside6-uic influence.ui -o ui_influence.py
-   ```
-   After that you can run project `python main.py`
+### Get weights.
+
+There are 2 options:
+
+1. You can either train them yourself by running provided jupyter notebook `inspect_csv.ipynb`. This will also help you to understand project better
+2. Or you can download them by running `download_and_init.py` script, which will download pretrained weights from nextcloud
+   
+### Run project. 
+
+There are 2 options:
+
+1. Via [QT Creator](https://www.qt.io/download). Open `recomendation.pyproject` as project in QT Creator and press either `Ctrl+R` or build symbol to build and run project. Please be sure to select `recomendation-venv` python binary as executable in Projects-Run in QT creator
+2. Using using terminal and `pyside` commands. Activate previously created venv (if not done before) and type
+
+```bash
+pyside6-uic form.ui -o ui_form.py
+pyside6-uic CompareModels.ui -o ui_CompareModels.py
+pyside6-uic influence.ui -o ui_influence.py
+```
+
+After that you can run project `python main.py`
 
 Be sure to have a look at [our jupyter notebook](inspect_csv.ipynb) to get familiar with project and its structure.
 
 ## Data analysis
 
-Data analysis is done exclusively in [jupyter notebook](inspect_csv.ipynb) to prevent interface cluttering with a lot of nonessential information. Please consult [inspect_csv.ipynb](inspect_csv.ipynb) file to get to know our project and our approach better. 
+Data analysis is done exclusively in [jupyter notebook](inspect_csv.ipynb) to prevent interface cluttering with a lot of nonessential information. Please consult [inspect_csv.ipynb](inspect_csv.ipynb) file to get to know our project and our approach better.
 
 Short synopsis of what was done:
 
@@ -74,6 +97,7 @@ Short synopsis of what was done:
 * Finally, correlation matrix was plotted to check if some cathegories affect other. Here we are mostly interested in correlation with price.
 * Next comes training phase.
 * Cathegorical features have to be converted into numbers. Thus we used `sklearn.preprocessing.LabelEncoder`. Because we will need to use our model in another project, `transform_dict` mapping was created, so `LabelEncoder` labels are preserved. It looks like this:
+
   ```json
   {'Manufacturer': {'ACURA': 0,
   'ALFA ROMEO': 1,
@@ -92,6 +116,7 @@ Short synopsis of what was done:
    'Gear box type': {'Automatic': 0, 'Manual': 1, 'Tiptronic': 2, 'Variator': 3},
    ........}
   ```
+
 * After that we scaled our data using `sklearn.preprocessing.StandardScaler`, so that neither of weights have more influence just because of value ranges.
 * Finally, the training begins. In our case we studied and implemented 5 regression models:
   * [LinearRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html)
@@ -99,7 +124,17 @@ Short synopsis of what was done:
   * [RandomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html)
   * [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
   * [XGBRFRegressor](https://xgboost.readthedocs.io/en/stable/python/python_api.html#module-xgboost.sklearn)
+
 ## Basic usage
+
+Prior to running `main.py` make sure to fullfill prerequisites (see [this](#get-weights)), namely: 
+
+* Either run jupyter notebook fully or
+* launch `download_and_init.py` to downloaded weights, that are needed for program to run
+
+After folder `weights_variables` is populated with content, you can proceed to `main.py`.
+
+
 
 ## Implementation of the Requests
 
