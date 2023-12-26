@@ -22,13 +22,13 @@ Keep in mind, that project is writte using `*.ui` files in QT Designer. And is d
 
 <p align="center">
   <figure>
-    <img src="doc/form_ui.png" width="100" alt="doc/form_ui.png">
+    <img src="doc/form_ui.png" width="600" alt="doc/form_ui.png">
     <figcaption>Main <code>form.ui</code></figcaption>
   </figure><figure>
-    <img src="doc/CompareModels_ui.png" width="100" alt="doc/CompareModels_ui.png">
+    <img src="doc/CompareModels_ui.png" width="600" alt="doc/CompareModels_ui.png">
     <figcaption>Model comparison <code> CompareModels.ui</code> </figcaption>
   </figure><figure>
-    <img src="doc/influence_ui.png" width="100" alt="doc/influence_ui.png">
+    <img src="doc/influence_ui.png" width="600" alt="doc/influence_ui.png">
     <figcaption>Influence of factor at price <code>influence.ui</code> </figcaption>
   </figure>
 </p>
