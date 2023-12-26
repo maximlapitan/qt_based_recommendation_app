@@ -134,8 +134,31 @@ Prior to running `main.py` make sure to fullfill prerequisites (see [this](#get-
 
 After folder `weights_variables` is populated with content, you can proceed to `main.py`.
 
+You will be greeted by a starting gui 
 
+![](doc/form_ui.png)
+
+Here you can select options like Turbo, Manufacturer via `QComboBox`, set a year with help of `QSlider` and `QSpinBox`, input Mileage using `QLineEdit`.
+
+Additionally you can select from one of 5 [abovementioned models](#data-analysis) and click predict button.
+
+This is an example what could happen.
+
+![](doc/select_parameters_predict.png)
+
+After Predict Price button was clicked, *Compare performance of all models* button appears. On click, opens form, which uses all 5 pre-trained models to predict price.
+
+![](doc/select_parameters_predict_compare.png)
+
+Here we can see how different models predict price differently.
+
+Finally, you can press "See how factors influence price" and play around with graphs and plots. 2d/3d switch switches between price dependancy on one or 2 factors respecitely
+
+![](doc/influence_ui.png)
 
 ## Implementation of the Requests
+
+Requests are implemented to trained weights using `pickle` and `joblib` libraries.
+
 
 ## Work done
