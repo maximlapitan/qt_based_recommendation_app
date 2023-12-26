@@ -63,6 +63,42 @@ Be sure to have a look at [our jupyter notebook](inspect_csv.ipynb) to get famil
 
 ## Data analysis
 
+Data analysis is done exclusively in [jupyter notebook](inspect_csv.ipynb) to prevent interface cluttering with a lot of nonessential information. Please consult [inspect_csv.ipynb](inspect_csv.ipynb) file to get to know our project and our approach better. 
+
+Short synopsis of what was done:
+
+* Data source from [Kaggle](https://www.kaggle.com/datasets/deepcontractor/car-price-prediction-challenge) was downloaded and edited by hand (to remove anomal values that might break machine learning and pandas). Final file is stored in the root of the project [car_price_prediction.csv](car_price_prediction.csv).
+* Edited file was inserted into jupyter notebook, where it was cleaned from outliers (to prevent model from overfitting to these values). Method used is shown on the picture below ![](doc/iqr.png)
+* After that data has been split to cathegorical and numerical and plotted accordingly in order to see cars distribution in the dataset.
+* After that we tried to plot correlation between each feature with the price of a vehicle.
+* Finally, correlation matrix was plotted to check if some cathegories affect other. Here we are mostly interested in correlation with price.
+* Next comes training phase.
+* Cathegorical features have to be converted into numbers. Thus we used `sklearn.preprocessing.LabelEncoder`. Because we will need to use our model in another project, `transform_dict` mapping was created, so `LabelEncoder` labels are preserved. It looks like this:
+  ```json
+  {'Manufacturer': {'ACURA': 0,
+  'ALFA ROMEO': 1,
+  'AUDI': 2,
+  'BMW': 3,
+  'BUICK': 4,
+  'CADILLAC': 5,
+  'CHEVROLET': 6,
+  'CHRYSLER': 7,
+  'CITROEN': 8,
+   ........},
+   'Leather interior': {False: 0, True: 1},
+   'Fuel type': {'CNG': 0,
+   'Diesel': 1,
+   ........},
+   'Gear box type': {'Automatic': 0, 'Manual': 1, 'Tiptronic': 2, 'Variator': 3},
+   ........}
+  ```
+* After that we scaled our data using `sklearn.preprocessing.StandardScaler`, so that neither of weights have more influence just because of value ranges.
+* Finally, the training begins. In our case we studied and implemented 5 regression models:
+  * [LinearRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html)
+  * [DecisionTreeRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html)
+  * [RandomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html)
+  * [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
+  * [XGBRFRegressor](https://xgboost.readthedocs.io/en/stable/python/python_api.html#module-xgboost.sklearn)
 ## Basic usage
 
 ## Implementation of the Requests
