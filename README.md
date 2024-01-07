@@ -90,7 +90,7 @@ Data analysis is done exclusively in [jupyter notebook](inspect_csv.ipynb) to pr
 
 ### Attributes of dataset
 - Attributes
-- ID: integer that numeretes data
+- ID: integer that numeretes data **(int)**
 - Price: price of the care (Target Column) **(int)**
 - Levy: tax related term. Tax of importing and exporting the cars **(int)**
 - Manufacturer: company that produces cars **(text)**
