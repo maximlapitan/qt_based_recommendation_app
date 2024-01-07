@@ -106,7 +106,7 @@ Data analysis is done exclusively in [jupyter notebook](inspect_csv.ipynb) to pr
 - Drive wheels: 4x4, rear or front, shows if only front wheels are driving wheels either it is rear or all 4 wheels drive the car. **(text)**
 - Doors: number of doors in car (trunk does not count) **(text)**
 - Wheel: left wheel or right-hand drive, shows if steering wheel is located left side of the car or right **(text)**
-- Color: different color of the car body
+- Color: different color of the car body **(text)**
 - Airbags: amount of airbags inside the car, from 0 to 16 **(int)**
 - Turbo: shows if turbo is installed inside the engine (to power up the car) **(boolean)**
 
