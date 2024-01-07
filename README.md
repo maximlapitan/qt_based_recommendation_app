@@ -88,6 +88,28 @@ Be sure to have a look at [our jupyter notebook](inspect_csv.ipynb) to get famil
 
 Data analysis is done exclusively in [jupyter notebook](inspect_csv.ipynb) to prevent interface cluttering with a lot of nonessential information. Please consult [inspect_csv.ipynb](inspect_csv.ipynb) file to get to know our project and our approach better.
 
+### Attributes of dataset
+- Attributes
+- ID: integer that numeretes data
+- Price: price of the care (Target Column) **(int)**
+- Levy: tax related term. Tax of importing and exporting the cars **(int)**
+- Manufacturer: company that produces cars **(text)**
+- Model: model of the produced car by manufacturer **(text)**
+- Prod. year: production year of the car **(int)**
+- Category: jeep, sedan, cabriolet, hatchback, microbus, goods wagon, universal, coupe, limousine, minivan, pickup **(text)**
+- Leather interior: shows if interior of the car is made of leather **(boolean)**
+- Fuel type: hybrid, petrol, diesel, CNG (compressed natural gas), plug-in hybrid, LPG (liquefied petroleum gas), hydrogen **(text)**
+- Engine volume: from 0.0 to 7.3 (shows how many litres are inside the engine) **(float)**
+- Mileage: how much car has been driven in km **(int)**
+- Cylinders: amount of cylinders inside the engine **(int)**
+- Gear box type: automatic, manual, tiptronic, variator **(text)**
+- Drive wheels: 4x4, rear or front, shows if only front wheels are driving wheels either it is rear or all 4 wheels drive the car. **(text)**
+- Doors: number of doors in car (trunk does not count) **(text)**
+- Wheel: left wheel or right-hand drive, shows if steering wheel is located left side of the car or right **(text)**
+- Color: different color of the car body
+- Airbags: amount of airbags inside the car, from 0 to 16 **(int)**
+- Turbo: shows if turbo is installed inside the engine (to power up the car) **(boolean)**
+
 Short synopsis of what was done:
 
 * Data source from [Kaggle](https://www.kaggle.com/datasets/deepcontractor/car-price-prediction-challenge) was downloaded and edited by hand (to remove anomal values that might break machine learning and pandas). Final file is stored in the root of the project [car_price_prediction.csv](car_price_prediction.csv).

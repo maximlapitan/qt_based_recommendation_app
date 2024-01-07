@@ -8,6 +8,7 @@ from ui_CompareModels import Ui_CompareModels
 import joblib
 
 from fill_labels import models_to_load
+from fill_labels import rmse_parametrs
 
 
 class CompareModels(QWidget):
@@ -26,12 +27,12 @@ class CompareModels(QWidget):
         prediction = ""
         with open(model_file, "rb") as m:
             model = joblib.load(m)
-            prediction = round(abs(model.predict(data_encoded)[0]), 2)
+            prediction = round(abs(model.predict(data_encoded)[0]))
         return prediction
 
     def showEvent(self, event):
-        for i, (model_name, model_path) in enumerate(models_to_load.items()):
-            prediction = str(self.open_predict_close(model_name, self.data))
+        for (i, (model_name, model_path)), (k,(model_name, model_rmse)) in zip(enumerate(models_to_load.items()),enumerate(rmse_parametrs.items())):
+            prediction = str(self.open_predict_close(model_name, self.data)) + " +- " + str(model_rmse)
             self.ui.QTable_comparison_models.setItem(i, 0, QTableWidgetItem(model_name))
             self.ui.QTable_comparison_models.setItem(i, 1, QTableWidgetItem(prediction))
             self.ui.QTable_comparison_models.resizeColumnsToContents()

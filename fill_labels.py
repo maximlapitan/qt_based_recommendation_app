@@ -18,6 +18,13 @@ models_to_load = {"Linear Regression": "weights_variables/lin_reg.joblib",
                   "Grid search": "weights_variables/grid_search.joblib",
                   "XGBRFRegressor": "weights_variables/XGBRFRegressor_model.joblib"}
 
+rmse_parametrs = {"Linear Regression": "8099",
+                "Decision Tree": "8598",
+                "Random Forest": "6244",
+                "Grid search": "6593",
+                "XGBRFRegressor": "7015"}
+
+
 data = {'Manufacturer': [],
         'Category': [],
         'Leather interior': [],
