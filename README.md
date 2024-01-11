@@ -214,6 +214,7 @@ Maxim Zotov:
 2) Visualization
 
 Maxim Lapitan:
+
 3) Pandas with Numpy 
 4) Scikit-Learn
 
