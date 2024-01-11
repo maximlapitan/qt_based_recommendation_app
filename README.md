@@ -151,7 +151,7 @@ Short synopsis of what was done:
 
 Prior to running `main.py` make sure to fullfill prerequisites (see [this](#get-weights)), namely: 
 
-* Either run jupyter notebook fully or
+* Either run jupyter notebook fully (better to run jupyter) or
 * launch `download_and_init.py` to downloaded weights, that are needed for program to run
 
 After folder `weights_variables` is populated with content, you can proceed to `main.py`.
@@ -181,6 +181,11 @@ Finally, you can press "See how factors influence price" and play around with gr
 ## Implementation of the Requests
 
 Requests are implemented to trained weights using `pickle` and `joblib` libraries.
+
+## Little overview of performance
+
+![](doc/toyota_camry_le_8000.png)
+![](doc/toyota_camry_le_8000_predicted.png)
 
 
 ## Work done
