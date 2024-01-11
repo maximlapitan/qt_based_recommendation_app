@@ -201,16 +201,20 @@ If we go and check average price on this website for this specific car, then it 
 ## Work done
 
 In general, the project about a recommendation system has the following parts:
-• Graphical User Interface (GUI) with PyQt
-• Visualization (with pandas and matplotlib)
-• Data analysis with pandas and numpy
-• scikit-learn
+- Graphical User Interface (GUI) with PyQt
+- Visualization (with pandas and matplotlib)
+- Data analysis with pandas and numpy
+- scikit-learn
 
 The project is done by 2 students. We divided our parts by following:
+
 Maxim Zotov:
+
 1) Graphical User Interface with PyQt
 2) Visualization
+
 Maxim Lapitan:
 3) Pandas with Numpy 
 4) Scikit-Learn
-Both: General Python Programming.
+
+**Both**: General Python Programming.
