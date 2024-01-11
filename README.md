@@ -198,6 +198,12 @@ Second car is toyota sienna xle that cost 20500 dollars. The model predicted val
 If we go and check average price on this website for this specific car, then it shows that it is really really close to the actual price.
 ![](doc/toyota_sienna_xle_average_price_on_market.png)
 
+Third car is Dodge Challenger R/T Shaker RWD. The model predicted value that is absolutely close to the actual price.
+![](doc/dodge_challenger_rt_rwd_27000.png)
+
+But this was only one offer. Let us check for the average price of this car on website. Now the predited value is only 590 dollars far from the actual average price.
+![](doc/dodge_challenger_rt_rwd_average.png)
+
 ## Work done
 
 In general, the project about a recommendation system has the following parts:
