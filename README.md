@@ -7,11 +7,12 @@
     - [1.3.3. Run project](#133-run-project)
   - [1.4. Data analysis](#14-data-analysis)
     - [1.4.1. Attributes of dataset](#141-attributes-of-dataset)
+    - [1.4.2. Data analysis](#142-data-analysis)
+    - [1.4.3. Model training](#143-model-training)
   - [1.5. Basic usage](#15-basic-usage)
   - [1.6. Implementation of the Requests](#16-implementation-of-the-requests)
   - [1.7. Little overview of performance](#17-little-overview-of-performance)
   - [1.8. Work done](#18-work-done)
-
 
 # 1. QT car price prediction model
 
@@ -125,6 +126,8 @@ Data analysis is done exclusively in [jupyter notebook](inspect_csv.ipynb) to pr
 - Airbags: amount of airbags inside the car, from 0 to 16 **(int)**
 - Turbo: shows if turbo is installed inside the engine (to power up the car) **(boolean)**
 
+### 1.4.2. Data analysis
+
 Short synopsis of what was done:
 
 - Data source from [Kaggle](https://www.kaggle.com/datasets/deepcontractor/car-price-prediction-challenge) was downloaded and edited by hand (to remove anomal values that might break machine learning and pandas). Final file is stored in the root of the project [car_price_prediction.csv](car_price_prediction.csv).
@@ -153,6 +156,8 @@ Short synopsis of what was done:
    'Gear box type': {'Automatic': 0, 'Manual': 1, 'Tiptronic': 2, 'Variator': 3},
    ........}
   ```
+
+### 1.4.3. Model training
 
 - After that we scaled our data using `sklearn.preprocessing.StandardScaler`, so that neither of weights have more influence just because of value ranges.
 - Finally, the training begins. In our case we studied and implemented 5 regression models:
@@ -195,28 +200,87 @@ Finally, you can press "See how factors influence price" and play around with gr
 
 ## 1.6. Implementation of the Requests
 
-Requests are implemented to trained weights using `pickle` and `joblib` libraries.
+- A Desktop App with PyQT6 has to been developed.
+- [requirements.txt](requirements.txt) file was used to list the used Python modules.
+- A [README.md](README.md) file correstponds to asked in part 01 structure.
+- The module venv was used. See [this chapter](#131-install-all-dependencies-and-activate-venv)
+- A free data source is used used. It was found on [Kaggle](https://www.kaggle.com/datasets/deepcontractor/car-price-prediction-challenge) and modified to suit our needs
+- There is a data import in
+  - jupyter notebook [inspect_csv.ipynb](inspect_csv.ipynb), `csv`
+
+    ```python
+    data = pd.read_csv("car_price_prediction.csv")
+    ```
+
+  - gui programm, [influence_widget.py](influence_widget.py), pandas
+
+    ```python
+    with open("weights_variables/train_frame.pkl", "rb") as pd_frame:
+            self.dataframe = pickle.load(pd_frame)
+    ```
+
+- The data is read from a file after app is started. For example in [widget.py](widget.py):
+
+  ```python
+  def predict_button(self):
+      scaler_file = "weights_variables/scaler.pkl"
+      with open(scaler_file, "rb") as s:
+          scaler = pickle.load(s)
+  ```
+
+- The data is analyzed with Pandas methods, so that a user gets on overview. For example in [inspect_csv.ipynb](inspect_csv.ipynb):
+
+  ```python
+  data = pd.read_csv("car_price_prediction.csv")
+  data.head()
+  data.info()
+  data.describe()
+  ```
+
+* There are also a bunch of diagrams and data analytics in jupyter notebook. Take a look [inspect_csv.ipynb](inspect_csv.ipynb)
+
+- A program with several different widgets was created. Mainly utilized `QComboBox`, `QPushButton` and `QLineEdit`. All 3 windows can be seen above.
+
+- A Scikit training model algorithms have been applied. You can see which models in section [Model Training](#143-model-training)
+
+- Data was visualized in [inspect_csv.ipynb](inspect_csv.ipynb) and in programm itself. Ui file [influence.ui](influence.ui) is responsible for that. In file [influence_widget.py](influence_widget.py) (which directly uses this `.ui` file) a graphical analysis of data is done.
+
+  ```python
+  def plot_figure(self):
+      if self.ui.radio_2d.isChecked():
+          figure = plot_2d_scatter(self.dataframe, self.ui.combobox_parameter_1.currentText())
+      elif self.ui.radio_3d.isChecked():
+          figure = plot_3d_scatter(self.dataframe, self.ui.combobox_parameter_1.currentText(), self.ui.combobox_parameter_2.currentText())
+  ```
+
+- Statistical analysis of data is performed in [inspect_csv.ipynb](inspect_csv.ipynb)
 
 ## 1.7. Little overview of performance
 
 Let us show how our models are working. Here we would predict car prices based on existing used cars that we found in internet.
 
 First car is toyota camry le that cost 8000 dollars.
+
 ![](doc/toyota_camry_le_8000.png)
 
 Here is how our model predicted. The result is really close.
+
 ![](doc/toyota_camry_le_8000_predicted.png)
 
 Second car is toyota sienna xle that cost 20500 dollars. The model predicted value that is so close to the real price.
+
 ![](doc/toyota_sienna_xle_20500_with_prediction.png)
 
 If we go and check average price on this website for this specific car, then it shows that it is really really close to the actual price.
+
 ![](doc/toyota_sienna_xle_average_price_on_market.png)
 
 Third car is Dodge Challenger R/T Shaker RWD. The model predicted value that is absolutely close to the actual price.
+
 ![](doc/dodge_challenger_rt_rwd_27000.png)
 
 But this was only one offer. Let us check for the average price of this car on website. Now the predited value is only 590 dollars far from the actual average price.
+
 ![](doc/dodge_challenger_rt_rwd_average.png)
 
 ## 1.8. Work done
