@@ -1,8 +1,23 @@
-# QT car price prediction model
+- [1. QT car price prediction model](#1-qt-car-price-prediction-model)
+  - [1.1. Authors](#11-authors)
+  - [1.2. Project description](#12-project-description)
+  - [1.3. Installation](#13-installation)
+    - [1.3.1. Install all dependencies and activate venv](#131-install-all-dependencies-and-activate-venv)
+    - [1.3.2. Get weights](#132-get-weights)
+    - [1.3.3. Run project](#133-run-project)
+  - [1.4. Data analysis](#14-data-analysis)
+    - [1.4.1. Attributes of dataset](#141-attributes-of-dataset)
+  - [1.5. Basic usage](#15-basic-usage)
+  - [1.6. Implementation of the Requests](#16-implementation-of-the-requests)
+  - [1.7. Little overview of performance](#17-little-overview-of-performance)
+  - [1.8. Work done](#18-work-done)
+
+
+# 1. QT car price prediction model
 
 Be aware, that due to windows-related dll issues project may have troubles launching under windows machines. If you experience them, I recommend you to try project in VM (opensuse or ubuntu). Be sure to have [python-3.11.6](https://www.python.org/downloads/release/python-3116/)
 
-## Authors
+## 1.1. Authors
 
 Maxim Lapitan 22200839
 
@@ -10,7 +25,7 @@ Maxim Zotov 22200849
 
 [Link to MyGit repo](https://mygit.th-deg.de/mz20849/mm-recommendation)
 
-## Project description
+## 1.2. Project description
 
 Project aims to predict price of the car based on criteria like mileage, volume of the engine, type of gearbox and so on.
 
@@ -33,8 +48,7 @@ Keep in mind, that project is writte using `*.ui` files in QT Designer. And is d
   </figure>
 </p>
 
-
-## Installation
+## 1.3. Installation
 
 There are several steps of installation, which have to be read carefully.
 
@@ -50,7 +64,7 @@ Software version used:
 | seaborn      | 0.13.0  |
 | xgboost      | 2.0.2   |
 
-### Install all dependencies and activate venv
+### 1.3.1. Install all dependencies and activate venv
 
    ```bash
    git clone https://mygit.th-deg.de/mz20849/mm-recommendation.git
@@ -60,14 +74,14 @@ Software version used:
    pip install -r requirements.txt
    ```
 
-### Get weights.
+### 1.3.2. Get weights
 
 There are 2 options:
 
 1. You can either train them yourself by running provided jupyter notebook `inspect_csv.ipynb`. This will also help you to understand project better
 2. Or you can download them by running `download_and_init.py` script, which will download pretrained weights from nextcloud
-   
-### Run project. 
+
+### 1.3.3. Run project
 
 There are 2 options:
 
@@ -84,11 +98,12 @@ After that you can run project `python main.py`
 
 Be sure to have a look at [our jupyter notebook](inspect_csv.ipynb) to get familiar with project and its structure.
 
-## Data analysis
+## 1.4. Data analysis
 
 Data analysis is done exclusively in [jupyter notebook](inspect_csv.ipynb) to prevent interface cluttering with a lot of nonessential information. Please consult [inspect_csv.ipynb](inspect_csv.ipynb) file to get to know our project and our approach better.
 
-### Attributes of dataset
+### 1.4.1. Attributes of dataset
+
 - Attributes
 - ID: integer that numeretes data **(int)**
 - Price: price of the care (Target Column) **(int)**
@@ -112,13 +127,13 @@ Data analysis is done exclusively in [jupyter notebook](inspect_csv.ipynb) to pr
 
 Short synopsis of what was done:
 
-* Data source from [Kaggle](https://www.kaggle.com/datasets/deepcontractor/car-price-prediction-challenge) was downloaded and edited by hand (to remove anomal values that might break machine learning and pandas). Final file is stored in the root of the project [car_price_prediction.csv](car_price_prediction.csv).
-* Edited file was inserted into jupyter notebook, where it was cleaned from outliers (to prevent model from overfitting to these values). Method used is shown on the picture below ![](doc/iqr.png)
-* After that data has been split to cathegorical and numerical and plotted accordingly in order to see cars distribution in the dataset.
-* After that we tried to plot correlation between each feature with the price of a vehicle.
-* Finally, correlation matrix was plotted to check if some cathegories affect other. Here we are mostly interested in correlation with price.
-* Next comes training phase.
-* Cathegorical features have to be converted into numbers. Thus we used `sklearn.preprocessing.LabelEncoder`. Because we will need to use our model in another project, `transform_dict` mapping was created, so `LabelEncoder` labels are preserved. It looks like this:
+- Data source from [Kaggle](https://www.kaggle.com/datasets/deepcontractor/car-price-prediction-challenge) was downloaded and edited by hand (to remove anomal values that might break machine learning and pandas). Final file is stored in the root of the project [car_price_prediction.csv](car_price_prediction.csv).
+- Edited file was inserted into jupyter notebook, where it was cleaned from outliers (to prevent model from overfitting to these values). Method used is shown on the picture below ![](doc/iqr.png)
+- After that data has been split to cathegorical and numerical and plotted accordingly in order to see cars distribution in the dataset.
+- After that we tried to plot correlation between each feature with the price of a vehicle.
+- Finally, correlation matrix was plotted to check if some cathegories affect other. Here we are mostly interested in correlation with price.
+- Next comes training phase.
+- Cathegorical features have to be converted into numbers. Thus we used `sklearn.preprocessing.LabelEncoder`. Because we will need to use our model in another project, `transform_dict` mapping was created, so `LabelEncoder` labels are preserved. It looks like this:
 
   ```json
   {'Manufacturer': {'ACURA': 0,
@@ -139,24 +154,24 @@ Short synopsis of what was done:
    ........}
   ```
 
-* After that we scaled our data using `sklearn.preprocessing.StandardScaler`, so that neither of weights have more influence just because of value ranges.
-* Finally, the training begins. In our case we studied and implemented 5 regression models:
-  * [LinearRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html)
-  * [DecisionTreeRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html)
-  * [RandomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html)
-  * [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
-  * [XGBRFRegressor](https://xgboost.readthedocs.io/en/stable/python/python_api.html#module-xgboost.sklearn)
+- After that we scaled our data using `sklearn.preprocessing.StandardScaler`, so that neither of weights have more influence just because of value ranges.
+- Finally, the training begins. In our case we studied and implemented 5 regression models:
+  - [LinearRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html)
+  - [DecisionTreeRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html)
+  - [RandomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html)
+  - [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
+  - [XGBRFRegressor](https://xgboost.readthedocs.io/en/stable/python/python_api.html#module-xgboost.sklearn)
 
-## Basic usage
+## 1.5. Basic usage
 
-Prior to running `main.py` make sure to fullfill prerequisites (see [this](#get-weights)), namely: 
+Prior to running `main.py` make sure to fullfill prerequisites (see [this](#get-weights)), namely:
 
-* Either run jupyter notebook fully (better to run jupyter) or
-* launch `download_and_init.py` to downloaded weights, that are needed for program to run
+- Either run jupyter notebook fully (better to run jupyter) or
+- launch `download_and_init.py` to downloaded weights, that are needed for program to run
 
 After folder `weights_variables` is populated with content, you can proceed to `main.py`.
 
-You will be greeted by a starting gui 
+You will be greeted by a starting gui
 
 ![](doc/form_ui.png)
 
@@ -178,11 +193,11 @@ Finally, you can press "See how factors influence price" and play around with gr
 
 ![](doc/influence_ui.png)
 
-## Implementation of the Requests
+## 1.6. Implementation of the Requests
 
 Requests are implemented to trained weights using `pickle` and `joblib` libraries.
 
-## Little overview of performance
+## 1.7. Little overview of performance
 
 Let us show how our models are working. Here we would predict car prices based on existing used cars that we found in internet.
 
@@ -192,7 +207,7 @@ First car is toyota camry le that cost 8000 dollars.
 Here is how our model predicted. The result is really close.
 ![](doc/toyota_camry_le_8000_predicted.png)
 
-Second car is toyota sienna xle that cost 20500 dollars. The model predicted value that is so close to the real price. 
+Second car is toyota sienna xle that cost 20500 dollars. The model predicted value that is so close to the real price.
 ![](doc/toyota_sienna_xle_20500_with_prediction.png)
 
 If we go and check average price on this website for this specific car, then it shows that it is really really close to the actual price.
@@ -204,9 +219,10 @@ Third car is Dodge Challenger R/T Shaker RWD. The model predicted value that is 
 But this was only one offer. Let us check for the average price of this car on website. Now the predited value is only 590 dollars far from the actual average price.
 ![](doc/dodge_challenger_rt_rwd_average.png)
 
-## Work done
+## 1.8. Work done
 
 In general, the project about a recommendation system has the following parts:
+
 - Graphical User Interface (GUI) with PyQt
 - Visualization (with pandas and matplotlib)
 - Data analysis with pandas and numpy
@@ -221,7 +237,7 @@ Maxim Zotov:
 
 Maxim Lapitan:
 
-3) Pandas with Numpy 
+3) Pandas with Numpy
 4) Scikit-Learn
 
 **Both**: General Python Programming.
