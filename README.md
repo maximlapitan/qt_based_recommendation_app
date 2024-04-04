@@ -101,6 +101,12 @@ or run `make`, which will generate same files
 make
 ```
 
+or run `make run` to run project. You can see [Makefule](Makefile) for details
+
+```
+make run
+```
+
 After that you can run project `python main.py`
 
 Be sure to have a look at [our jupyter notebook](inspect_csv.ipynb) to get familiar with project and its structure.
