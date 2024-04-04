@@ -95,6 +95,12 @@ pyside6-uic CompareModels.ui -o ui_CompareModels.py
 pyside6-uic influence.ui -o ui_influence.py
 ```
 
+or run `make`, which will generate same files
+
+```bash
+make
+```
+
 After that you can run project `python main.py`
 
 Be sure to have a look at [our jupyter notebook](inspect_csv.ipynb) to get familiar with project and its structure.
